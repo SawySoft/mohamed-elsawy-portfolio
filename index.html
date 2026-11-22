@@ -40,6 +40,47 @@
   <meta name="msapplication-TileImage" content="assets/img/favicon/ms-icon-144x144.png" />
   <meta name="theme-color" content="#ffffff" />
   <meta name="robots" content="index, follow" />
+
+  <!-- Extra styles: skills chips + hero photo animation -->
+  <style>
+    /* Skills: wrap instead of overlapping on small screens */
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .skill-chip {
+      display: inline-block; max-width: 100%; padding: 6px 16px; border-radius: 20px;
+      background: #e0f2f1; color: #004d40; font-weight: 500; font-size: 15px; line-height: 1.4;
+      overflow-wrap: anywhere; word-break: break-word; text-align: center;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+    .skill-chip:hover { transform: translateY(-2px); background: #009688; color: #fff; }
+
+    /* Hero photo with animated ring */
+    .hero-photo { position: relative; width: 210px; height: 210px; margin: 0 0 24px; }
+    .hero-photo::before {
+      content: ""; position: absolute; inset: -8px; border-radius: 50%;
+      background: conic-gradient(#009688, #4db6ac, #ffffff, #00796b, #009688);
+      animation: hero-spin 6s linear infinite;
+    }
+    .hero-photo::after {
+      content: ""; position: absolute; inset: -8px; border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, .6);
+      animation: hero-pulse 2.4s ease-out infinite;
+    }
+    .hero-photo img {
+      position: relative; z-index: 2; width: 100%; height: 100%; object-fit: cover;
+      border-radius: 50%; border: 5px solid #fff; background: #fff;
+      animation: hero-float 4s ease-in-out infinite;
+    }
+    @keyframes hero-spin { to { transform: rotate(360deg); } }
+    @keyframes hero-pulse { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.3); opacity: 0; } }
+    @keyframes hero-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @media (max-width: 600px) {
+      .hero-photo { width: 160px; height: 160px; margin-left: auto; margin-right: auto; }
+      #intro .content { margin-left: 0 !important; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-photo::before, .hero-photo::after, .hero-photo img { animation: none; }
+    }
+  </style>
 </head>
 
 <body>
@@ -54,7 +95,7 @@
           <img src="assets/img/profile.jpeg" class="circle img-responsive profile-pic" alt="avatar">
         </a>
       </li>
-›
+
       <li class="bold">
         <a aria-label="Navigate to the About section" href="#about" class="waves-effect waves-dark teal-text"><i
             class="mdi-social-person small"></i><span>About</span></a>
@@ -142,6 +183,9 @@
       <div class="container">
         <div class="col-md-9">
           <div class="content section-padding valign" style="margin-left: 10%; margin-top: 50px;">
+            <div class="hero-photo">
+              <img src="assets/img/profile.jpeg" alt="Mohamed El Sawy" />
+            </div>
             <div class="caption">
               <h2>Hi, I'm <span class="teal">Mohamed El Sawy.</span></h2>
               <h5 style="color:#fff">A <span class="typing" style="font-weight: 300; color:#004d40"></span></h5>
@@ -173,7 +217,7 @@
       <h3 class="page-title white-text teal">About</h3>
       <div class="container flow-text">
         <p>
-          I am Mohamed El Sawy is a Flutter and cross-platform application developer based in Giza, Egypt, operating under the SawySoft brand. Following a Flutter mobile application development diploma completed at Easy Learn Academy in October 2026, he builds responsive mobile applications, admin dashboards, and multi-platform solutions using Clean Architecture, Cubit. His technical stack spans Flutter and Dart—alongside foundational knowledge in Kotlin, Java, and C++—with hands-on experience integrating REST APIs via Dio, Firebase, Supabase, Sqflite, and SharedPreferencesWithCache, as well as delivering localization (easy_localization), maps and location services (flutter_map, geolocator, geocoding), webview_flutter, dynamic theming (ThemeMode.system), and responsive layouts across screen sizes.
+          Mohamed El Sawy is a Flutter and cross-platform application developer based in Giza, Egypt, operating under the SawySoft brand. Following a Flutter mobile application development diploma completed at Easy Learn Academy in October 2026, he builds responsive mobile applications, admin dashboards, and multi-platform solutions using Clean Architecture, Cubit. His technical stack spans Flutter and Dart—alongside foundational knowledge in Kotlin, Java, and C++—with hands-on experience integrating REST APIs via Dio, Firebase, Supabase, Sqflite, and SharedPreferencesWithCache, as well as delivering localization (easy_localization), maps and location services (flutter_map, geolocator, geocoding), webview_flutter, dynamic theming (ThemeMode.system), and responsive layouts across screen sizes.
         </p>
         <p>
           <ul>
@@ -394,59 +438,59 @@
         <div class="card">
           <div class="card-content">
             <h4 class="brown-text light">Fundamentals</h4>
-            <div class="row text-center">
-              <div class="col s4 m2"><b>Flutter</b></div>
-              <div class="col s4 m2"><b>Dart</b></div>
-              <div class="col s4 m2"><b>OOP</b></div>
-              <div class="col s4 m2"><b>Kotlin</b></div>
-              <div class="col s4 m2"><b>SQL(Familiarity)</b></div>
-              <div class="col s4 m2"><b>Java(Familiarity)</b></div>
-              <div class="col s4 m2"><b>C++(Familiarity)</b></div>
+            <div class="skill-chips">
+              <span class="skill-chip">Flutter</span>
+              <span class="skill-chip">Dart</span>
+              <span class="skill-chip">OOP</span>
+              <span class="skill-chip">Kotlin</span>
+              <span class="skill-chip">SQL (Familiarity)</span>
+              <span class="skill-chip">Java (Familiarity)</span>
+              <span class="skill-chip">C++ (Familiarity)</span>
             </div>
           </div>
         </div>
 
-        <!-- Architecture & State Management -->
+        <!-- Architecture &amp; State Management -->
         <div class="card">
           <div class="card-content">
             <h4 class="brown-text light">Architecture &amp; State Management</h4>
-            <div class="row text-center">
-              <div class="col s4 m2"><b>Clean Architecture</b></div>
-              <div class="col s4 m2"><b>Cubit</b></div>
-              <div class="col s4 m2"><b>Freezed</b></div>
-              <div class="col s4 m2"><b>Dio</b></div>
-              <div class="col s4 m2"><b>GetIt</b></div>
+            <div class="skill-chips">
+              <span class="skill-chip">Clean Architecture</span>
+              <span class="skill-chip">Cubit</span>
+              <span class="skill-chip">Freezed</span>
+              <span class="skill-chip">Dio</span>
+              <span class="skill-chip">GetIt</span>
             </div>
           </div>
         </div>
 
-        <!-- Networking & Databases -->
+        <!-- Networking &amp; Databases -->
         <div class="card">
           <div class="card-content">
             <h4 class="brown-text light">Networking &amp; Databases</h4>
-            <div class="row text-center">
-              <div class="col s4 m2"><b>Dio</b></div>
-              <div class="col s4 m2"><b>REST APIs</b></div>
-              <div class="col s4 m2"><b>Firebase</b></div>
-              <div class="col s4 m2"><b>Supabase</b></div>
-              <div class="col s4 m2"><b>SharedPreferencesWithCache</b></div>
-              <div class="col s4 m2"><b>Sqflite</b></div>
+            <div class="skill-chips">
+              <span class="skill-chip">Dio</span>
+              <span class="skill-chip">REST APIs</span>
+              <span class="skill-chip">Firebase</span>
+              <span class="skill-chip">Supabase</span>
+              <span class="skill-chip">SharedPreferencesWithCache</span>
+              <span class="skill-chip">Sqflite</span>
             </div>
           </div>
         </div>
 
-        <!-- Packages & Features -->
+        <!-- Packages &amp; Features -->
         <div class="card">
           <div class="card-content">
             <h4 class="brown-text light">Packages &amp; Features</h4>
-            <div class="row text-center">
-              <div class="col s4 m2"><b>easy_localization</b></div>
-              <div class="col s4 m2"><b>flutter_map</b></div>
-              <div class="col s4 m2"><b>geolocator</b></div>
-              <div class="col s4 m2"><b>geocoding</b></div>
-              <div class="col s4 m2"><b>webview_flutter</b></div>
-              <div class="col s4 m2"><b>ThemeMode.system</b></div>
-              <div class="col s4 m2"><b>Responsive layouts</b></div>
+            <div class="skill-chips">
+              <span class="skill-chip">easy_localization</span>
+              <span class="skill-chip">flutter_map</span>
+              <span class="skill-chip">geolocator</span>
+              <span class="skill-chip">geocoding</span>
+              <span class="skill-chip">webview_flutter</span>
+              <span class="skill-chip">ThemeMode.system</span>
+              <span class="skill-chip">Responsive layouts</span>
             </div>
           </div>
         </div>
@@ -517,9 +561,11 @@
       <h3 class="page-title white-text teal">Contact</h3>
       <div class="container">
         <p>
-          <a aria-label="Call Mohamed" href="tel:01508881522" data-position="top" data-tooltip="Call Mohamed"
-            class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i class="fa fa-phone"></i></a>
-          <a aria-label="Call Mohamed" href="tel:01508881522">01508881522</a>
+          <a aria-label="Message Mohamed on WhatsApp" href="https://wa.me/201508881522" target="_blank" data-position="top"
+            data-tooltip="WhatsApp" class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
+              class="fa fa-whatsapp"></i></a>
+          <a aria-label="Message Mohamed on WhatsApp" href="https://wa.me/201508881522" target="_blank"
+            class="hoverline">WhatsApp: 01508881522</a>
         </p>
         <p>
           <a aria-label="Email Mohamed" href="mailto:mohmedelsawy016@gmail.com" target="_blank" data-position="top"
