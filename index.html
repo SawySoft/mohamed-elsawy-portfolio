@@ -54,7 +54,12 @@
     .skill-chip:hover { transform: translateY(-2px); background: #009688; color: #fff; }
 
     /* Hero photo with animated ring */
-    .hero-photo { position: relative; width: 210px; height: 210px; margin: 0 0 24px; }
+    .hero-photo { position: relative; z-index: 0; isolation: isolate; width: 210px; height: 210px; margin: 0 0 24px; }
+    /* Keep the top bar above the photo and push the photo below it on small screens */
+    nav.trigger { z-index: 1001; }
+    @media (max-width: 992px) {
+      .hero-photo { margin-top: 100px; margin-left: auto; margin-right: auto; }
+    }
     .hero-photo::before {
       content: ""; position: absolute; inset: -8px; border-radius: 50%;
       background: conic-gradient(#009688, #4db6ac, #ffffff, #00796b, #009688);
@@ -591,9 +596,9 @@
         </p>
         <p>
           <a aria-label="Location" data-position="top" data-tooltip="Location"
-            class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-              class="fa fa-map-marker"></i></a>
-          <span>Giza, Egypt</span>
+             class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
+                  class="fa fa-map-marker"></i></a>
+          <span style="display: block; text-align: center;">Giza, Egypt</span>
         </p>
       </div>
     </section>
@@ -603,7 +608,7 @@
   <script src="assets/vendor/typed.js/typed.min.js"></script>
   <script type="text/javascript">
     var typed = new Typed('.typing',{
-      strings: ["Flutter Developer", "Mobile & Web Developer", "Fast Learner"],
+      strings: ["Flutter Developer", "Mobile and Web Developer", "Fast Learner"],
       loop: true,
       typeSpeed: 80,
       backSpeed: 40
